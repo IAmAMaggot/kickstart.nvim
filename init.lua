@@ -116,7 +116,9 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      -- vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'default'
+
     end,
   },
 
@@ -126,7 +128,8 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        -- theme = 'onedark',
+        -- theme = 'default',
         component_separators = '|',
         section_separators = '',
       },
@@ -186,7 +189,7 @@ require('lazy').setup({
   --
   --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
-  { import = 'custom.plugins' },
+--   { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -195,8 +198,10 @@ require('lazy').setup({
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- Make line numbers default
+-- hybrid line numbers
 vim.wo.number = true
+vim.wo.relativenumber = true --'number'
+
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -288,7 +293,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
