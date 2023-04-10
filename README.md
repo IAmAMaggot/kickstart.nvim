@@ -1,4 +1,5 @@
 # kickstart.nvim
+Some files need to be connected via symbolic links. Clone into .config/nvim
 
 ### Introduction
 
