@@ -1,2 +1,5 @@
 [pycodestyle]
-ignore = E231, E226
+ignore = E231, E225, E226
+# E231 missing whitespace after ','
+# E225 missing whitespace around operator
+# E226 missing whitespace around arithmetic operator
