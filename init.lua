@@ -198,7 +198,15 @@ require('lazy').setup({
     config = function()
       require('alpha').setup(require('alpha.themes.startify').config)
     end
-  }
+  },
+
+  { -- Theme inspired by Atom
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  },
+
 }, {})
 
 -- [[ Setting options ]]
