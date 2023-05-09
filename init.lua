@@ -65,6 +65,8 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
+  -- RASI: after that :call mkdp#util#install()
+  'iamcco/markdown-preview.nvim',
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -527,5 +529,9 @@ vim.g.clipboard = {
   },
   cache_enabled = 0,
 }
+-- RASI: allow inserting a new line without entering insert mode
+vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>', {noremap = true})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
