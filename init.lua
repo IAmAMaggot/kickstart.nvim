@@ -530,8 +530,12 @@ vim.g.clipboard = {
   cache_enabled = 0,
 }
 -- RASI: allow inserting a new line without entering insert mode
-vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>k', {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>j', {noremap = true})
+
+-- Codefolding indent based
+vim.o.foldmethod = 'indent'
+vim.o.foldlevelstart = 99 -- nothing shall be folded when entering a buffer
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
