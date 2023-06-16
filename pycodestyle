@@ -1,6 +1,12 @@
 [pycodestyle]
-ignore = E231, E225, E226, E501
+ignore = E231, E225, E226, E501, E261, E262, E302, E305, W291, W391
 # E231 missing whitespace after ','
 # E225 missing whitespace around operator
 # E226 missing whitespace around arithmetic operator
+# E302 expected 2 blank lines, found 1
+# E305 expected 2 blank lines after class or function definition, found 1
 # E501 line too long
+# E261 two spaces before inline comment required
+# E262 inline comment should start with '# '
+# W291 trailing white space
+# W391 blank line at end of file
