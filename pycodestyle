@@ -1,5 +1,5 @@
 [pycodestyle]
-ignore = E231, E225, E226, E501, E261, E262, E302, E305, W291, W391
+ignore = E231, E225, E226, E501, E261, E262, E302, E305, E402, W291, W391
 # E231 missing whitespace after ','
 # E225 missing whitespace around operator
 # E226 missing whitespace around arithmetic operator
@@ -8,5 +8,6 @@ ignore = E231, E225, E226, E501, E261, E262, E302, E305, W291, W391
 # E501 line too long
 # E261 two spaces before inline comment required
 # E262 inline comment should start with '# '
+# E402 module level import not at top of file
 # W291 trailing white space
 # W391 blank line at end of file

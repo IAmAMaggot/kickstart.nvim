@@ -67,6 +67,11 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- RASI: after that :call mkdp#util#install()
   'iamcco/markdown-preview.nvim',
+  {'sunjon/Shade.nvim',
+    opts = {
+      overlay_opacity = 50
+    }
+  },
 
   -- Git related plugins
   'tpope/vim-fugitive',
