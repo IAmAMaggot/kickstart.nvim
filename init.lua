@@ -69,8 +69,14 @@ require('lazy').setup({
   'iamcco/markdown-preview.nvim',
   {'sunjon/Shade.nvim',
     opts = {
-      overlay_opacity = 50
-    }
+      overlay_opacity = 70,
+      opacity_step = 5,
+      keys = {
+        brightness_up    = '<C-Up>',
+        brightness_down  = '<C-Down>',
+        toggle           = '<Leader>topa',
+      },
+    },
   },
 
   -- Git related plugins
