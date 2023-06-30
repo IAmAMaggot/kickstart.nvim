@@ -67,6 +67,7 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- RASI: after that :call mkdp#util#install()
   'iamcco/markdown-preview.nvim',
+
   {'sunjon/Shade.nvim',
     opts = {
       overlay_opacity = 70,
@@ -77,6 +78,26 @@ require('lazy').setup({
         toggle           = '<Leader>topa',
       },
     },
+  },
+
+  --RASI: CSV viewer
+  {'cameron-wags/rainbow_csv.nvim',
+    config = true,
+    ft = {
+        'csv',
+        'tsv',
+        'csv_semicolon',
+        'csv_whitespace',
+        'csv_pipe',
+        'rfc_csv',
+        'rfc_semicolon'
+    },
+    cmd = {
+        'RainbowDelim',
+        'RainbowDelimSimple',
+        'RainbowDelimQuoted',
+        'RainbowMultiDelim'
+    }
   },
 
   -- Git related plugins
