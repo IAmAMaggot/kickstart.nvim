@@ -227,6 +227,11 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  {
+    -- RASI
+    "michaelb/sniprun",
+    build = 'sh install.sh',
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -590,6 +595,10 @@ vim.g.clipboard = {
 -- RASI: allow inserting a new line without entering insert mode
 vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>k', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>j', {noremap = true})
+vim.keymap.set('n', '<Leader>sn', '<cmd>SnipRun<cr>', {noremap = true})
+vim.keymap.set('v', '<Leader>sn', function () -- visual mode is complex af
+  return ":SnipRun " .. '<cr>'
+end, { expr = true})
 
 -- Codefolding indent based
 vim.o.foldmethod = 'indent'
