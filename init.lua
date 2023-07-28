@@ -595,8 +595,8 @@ vim.g.clipboard = {
 -- RASI: allow inserting a new line without entering insert mode
 vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>k', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>j', {noremap = true})
-vim.keymap.set('n', '<Leader>sn', '<cmd>SnipRun<cr>', {noremap = true})
-vim.keymap.set('v', '<Leader>sn', function () -- visual mode is complex af
+vim.keymap.set('n', '<Leader>sr', '<cmd>SnipRun<cr>', {noremap = true})
+vim.keymap.set('v', '<Leader>sr', function () -- visual mode is complex af
   return ":SnipRun " .. '<cr>'
 end, { expr = true})
 
