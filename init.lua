@@ -288,7 +288,7 @@ vim.o.mouse = 'a'
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 
-if vim.fn.hostname() == "blahblah" then
+if vim.fn.hostname() == "RasiZephiWindows" then
   vim.o.clipboard = 'unnamed'
 end
 
