@@ -38,6 +38,7 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.python3_host_prog = vim.fn.expand('/usr/bin/python3.8')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -286,7 +287,10 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamed'
+
+if vim.fn.hostname() == "blahblah" then
+  vim.o.clipboard = 'unnamed'
+end
 
 -- Enable break indent
 vim.o.breakindent = true
