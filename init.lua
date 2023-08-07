@@ -38,7 +38,9 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.python3_host_prog = vim.fn.expand('/usr/bin/python3.8')
+if vim.fn.hostname() ~= "RasiZephiWindows" then
+  vim.g.python3_host_prog = vim.fn.expand('/usr/bin/python3.8')
+end
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -67,18 +69,6 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- RASI: after that :call mkdp#util#install()
   'iamcco/markdown-preview.nvim',
-
-  {'sunjon/Shade.nvim',
-    opts = {
-      overlay_opacity = 70,
-      opacity_step = 5,
-      keys = {
-        brightness_up    = '<C-Up>',
-        brightness_down  = '<C-Down>',
-        toggle           = '<Leader>topa',
-      },
-    },
-  },
 
   --RASI: CSV viewer
   {'cameron-wags/rainbow_csv.nvim',
@@ -132,7 +122,10 @@ require('lazy').setup({
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      {
+        'saadparwaiz1/cmp_luasnip',
+        build = "make install_jsregexp"
+      },
 
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
