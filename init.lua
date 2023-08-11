@@ -177,8 +177,24 @@ require('lazy').setup({
         icons_enabled = false,
         theme = 'onedark',
         -- theme = 'default',
-        component_separators = '|',
+        component_separators = '',
         section_separators = '',
+      },
+      sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {'filename'},
+        lualine_x = {'hostname'},
+        lualine_y = {'filetype'},
+        lualine_z = {'progress', 'location'}
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'branch', 'filename'},
+        lualine_x = {'hostname', 'filetype', 'progress', 'location'},
+        lualine_y = {},
+        lualine_z = {}
       },
     },
   },
