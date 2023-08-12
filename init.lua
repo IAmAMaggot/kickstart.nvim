@@ -259,15 +259,7 @@ require('lazy').setup({
   --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
 --  { import = 'custom.plugins' },
-  {
-    'goolord/alpha-nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('alpha').setup(require('alpha.themes.startify').config)
-    end
-  },
+  'mhinz/vim-startify',
 
   { -- Theme inspired by Atom
     'windwp/nvim-autopairs',
@@ -607,12 +599,59 @@ vim.g.clipboard = {
   cache_enabled = 0,
 }
 -- RASI: allow inserting a new line without entering insert mode
-vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>k', {noremap = true})
-vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>j', {noremap = true})
-vim.keymap.set('n', '<Leader>sr', '<cmd>SnipRun<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>k', {noremap = true,
+   desc = 'New line below without insert mode' }
+)
+vim.api.nvim_set_keymap('n', '<Leader>O', 'O<Esc>j', {noremap = true,
+   desc = 'New line above without insert mode' }
+)
+vim.keymap.set('n', '<Leader>sv', '<cmd>vs<cr><C-w>w<cmd>Startify<cr>', {noremap = true,
+   desc = 'Vertical Split new buffer with Startify' }
+)
+vim.keymap.set('n', '<Leader>ss', '<cmd>sp<cr><C-w>w<cmd>Startify<cr>', {noremap = true,
+   desc = 'Horizontal Split new buffer with Startify' }
+)
+vim.keymap.set('n', '<Leader>ww', '<C-w>w', {noremap = true,
+   desc = 'Jump to next buffer' }
+)
+vim.keymap.set('n', '<Leader>wf', '<C-w>|<C-w>_', {noremap = true,
+   desc = 'Buffer to fullscreen' }
+)
+vim.keymap.set('n', '<Leader>wn', '<C-w>=', {noremap = true,
+   desc = 'Exit fullscreen' }
+)
+vim.keymap.set('n', '<Leader>sr', '<cmd>SnipRun<cr>', {noremap = true,
+   desc = 'Execute marked Python code' }
+)
 vim.keymap.set('v', '<Leader>sr', function () -- visual mode is complex af
   return ":SnipRun " .. '<cr>'
-end, { expr = true})
+end, { expr = true,
+   desc = 'Execute marked Python code' }
+)
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+
+vim.g.startify_custom_indices = {'a', 's', 'd', 'f', 'g', 'w', 'r', 't', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+
+vim.g.startify_custom_header = 'startify#pad(startify#fortune#quote())'
+vim.g.startify_padding_left = 0
+vim.g.startify_files_number = 6
+
+vim.g.startify_lists = {{
+        type = 'sessions',
+        header = {'Sessions'}
+    }, {
+        type = 'dir',
+        header = {'Files in current directory: ' .. vim.fn.getcwd()}
+    }, {
+        type = 'files',
+        header = {'Files'}
+    }, {
+        type = 'bookmarks',
+        header = {'Bookmarks'}
+    }, {
+        type = 'commands',
+        header = {'Commands'}
+    }}
 
 -- Codefolding indent based
 vim.o.foldmethod = 'indent'
