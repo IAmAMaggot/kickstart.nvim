@@ -630,7 +630,30 @@ end, { expr = true,
 )
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 
-vim.g.startify_custom_indices = {'a', 's', 'd', 'f', 'g', 'w', 'r', 't', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+-- vim.g.startify_custom_indices = {'a', 's', 'd', 'f', 'g', 'w', 'r', 't', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'aa', 'as', 'ad', 'af', 'ag', 'aw', 'ar', 'at', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a0', 'sa', 'ss', 'sd', 'sf', 'sg', 'sw', 'sr', 'st', 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's0'}
+vim.g.startify_custom_indices = {
+  'a', 's', 'd', 'f', 'g',
+  'aa', 'as', 'ad', 'af', 'ag',
+  'sa', 'ss', 'sd', 'sf', 'sg',
+  'da', 'ds', 'dd', 'df', 'dg',
+  'fa', 'fs', 'fd', 'ff', 'fg',
+  'ga', 'gs', 'gd', 'gf', 'gg',
+  'aaa', 'aas', 'aad', 'aaf', 'aag',
+  'asa', 'ass', 'asd', 'asf', 'asg',
+  'ada', 'ads', 'add', 'adf', 'adg',
+  'afa', 'afs', 'afd', 'aff', 'afg',
+  'aga', 'ags', 'agd', 'agf', 'agg',
+  'saa', 'sas', 'sad', 'saf', 'sag',
+  'ssa', 'sss', 'ssd', 'ssf', 'ssg',
+  'sda', 'sds', 'sdd', 'sdf', 'sdg',
+  'sfa', 'sfs', 'sfd', 'sff', 'sfg',
+  'sga', 'sgs', 'sgd', 'sgf', 'sgg',
+  'daa', 'das', 'dad', 'daf', 'dag',
+  'dsa', 'dss', 'dsd', 'dsf', 'dsg',
+  'dda', 'dds', 'ddd', 'ddf', 'ddg',
+  'dfa', 'dfs', 'dfd', 'dff', 'dfg',
+  'dga', 'dgs', 'dgd', 'dgf', 'dgg',
+}
 
 vim.g.startify_custom_header = 'startify#pad(startify#fortune#quote())'
 vim.g.startify_padding_left = 0
