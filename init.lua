@@ -634,7 +634,6 @@ vim.g.startify_custom_indices = {'a', 's', 'd', 'f', 'g', 'w', 'r', 't', '1', '2
 
 vim.g.startify_custom_header = 'startify#pad(startify#fortune#quote())'
 vim.g.startify_padding_left = 0
-vim.g.startify_files_number = 6
 
 vim.g.startify_lists = {{
         type = 'sessions',
