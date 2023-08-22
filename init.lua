@@ -658,6 +658,7 @@ vim.g.startify_custom_indices = {
 vim.g.startify_custom_header = 'startify#pad(startify#fortune#quote())'
 vim.g.startify_padding_left = 0
 vim.g.startify_files_number = 16
+vim.g.startify_change_to_vcs_root = 1
 
 vim.g.startify_lists = {{
         type = 'sessions',
