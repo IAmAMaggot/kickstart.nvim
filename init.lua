@@ -70,6 +70,8 @@ require('lazy').setup({
   -- RASI: after that :call mkdp#util#install()
   'iamcco/markdown-preview.nvim',
 
+  -- RASI: LATEX
+  'lervag/vimtex',
   --RASI: CSV viewer
   {'cameron-wags/rainbow_csv.nvim',
     config = true,
@@ -498,7 +500,7 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
@@ -611,7 +613,11 @@ vim.keymap.set('n', '<Leader>sv', '<cmd>vs<cr><C-w>w<cmd>Startify<cr>', {noremap
 vim.keymap.set('n', '<Leader>ss', '<cmd>sp<cr><C-w>w<cmd>Startify<cr>', {noremap = true,
    desc = 'Horizontal Split new buffer with Startify' }
 )
-vim.keymap.set('n', '<Leader>ww', '<C-w>w', {noremap = true,
+-- vim.keymap.set('n', '<Leader>ww', '<C-w>w', {noremap = true,
+--    desc = 'Jump to next buffer' }
+-- )
+-- same as above but tab
+vim.keymap.set('n', '<tab>', '<C-w>w', {noremap = true,
    desc = 'Jump to next buffer' }
 )
 vim.keymap.set('n', '<Leader>wf', '<C-w>|<C-w>_', {noremap = true,
@@ -628,32 +634,54 @@ vim.keymap.set('v', '<Leader>sr', function () -- visual mode is complex af
 end, { expr = true,
    desc = 'Execute marked Python code' }
 )
+vim.keymap.set('n', '<Leader>f', '<cmd>Format<cr>', {noremap = true,
+   desc = 'LSP code formatting' }
+)
+vim.keymap.set('n', '<Leader>st', '<cmd>Startify<cr>', {noremap = true,
+   desc = 'LSP code formatting' }
+)
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 
 -- vim.g.startify_custom_indices = {'a', 's', 'd', 'f', 'g', 'w', 'r', 't', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'aa', 'as', 'ad', 'af', 'ag', 'aw', 'ar', 'at', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a0', 'sa', 'ss', 'sd', 'sf', 'sg', 'sw', 'sr', 'st', 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's0'}
 vim.g.startify_custom_indices = {
-  'a', 's', 'd', 'f', 'g',
-  'aa', 'as', 'ad', 'af', 'ag',
-  'sa', 'ss', 'sd', 'sf', 'sg',
-  'da', 'ds', 'dd', 'df', 'dg',
-  'fa', 'fs', 'fd', 'ff', 'fg',
-  'ga', 'gs', 'gd', 'gf', 'gg',
-  'aaa', 'aas', 'aad', 'aaf', 'aag',
-  'asa', 'ass', 'asd', 'asf', 'asg',
-  'ada', 'ads', 'add', 'adf', 'adg',
-  'afa', 'afs', 'afd', 'aff', 'afg',
-  'aga', 'ags', 'agd', 'agf', 'agg',
-  'saa', 'sas', 'sad', 'saf', 'sag',
-  'ssa', 'sss', 'ssd', 'ssf', 'ssg',
-  'sda', 'sds', 'sdd', 'sdf', 'sdg',
-  'sfa', 'sfs', 'sfd', 'sff', 'sfg',
-  'sga', 'sgs', 'sgd', 'sgf', 'sgg',
-  'daa', 'das', 'dad', 'daf', 'dag',
-  'dsa', 'dss', 'dsd', 'dsf', 'dsg',
-  'dda', 'dds', 'ddd', 'ddf', 'ddg',
-  'dfa', 'dfs', 'dfd', 'dff', 'dfg',
-  'dga', 'dgs', 'dgd', 'dgf', 'dgg',
+  'ff', 'fd', 'fg', 'fs', 'fa',
+  'df', 'dd', 'dg', 'ds', 'da',
+  'gf', 'gd', 'gg', 'gs', 'ga',
+  'sf', 'sd', 'sg', 'ss', 'sa',
+  'af', 'ad', 'ag', 'as', 'aa',
+  'rr', 'rf', 'rd', 'rg', 'rs', 'ra',
+  'tt', 'tf', 'td', 'tg', 'ts', 'tr', 'ta',
 }
+  -- 'dgg', 'dgf', 'dgd', 'dgs', 'dga',
+  -- 'dfg', 'dff', 'dfd', 'dfs', 'dfa',
+  -- 'ddg', 'ddf', 'ddd', 'dds', 'dda',
+  -- 'dsg', 'dsf', 'dsd', 'dss', 'dsa',
+  -- 'dag', 'daf', 'dad', 'das', 'daa',
+  -- 'sgg', 'sgf', 'sgd', 'sgs', 'sga',
+  -- 'sfg', 'sff', 'sfd', 'sfs', 'sfa',
+  -- 'sdg', 'sdf', 'sdd', 'sds', 'sda',
+  -- 'ssg', 'ssf', 'ssd', 'sss', 'ssa',
+  -- 'sag', 'saf', 'sad', 'sas', 'saa',
+  -- 'agg', 'agf', 'agd', 'ags', 'aga',
+  -- 'afg', 'aff', 'afd', 'afs', 'afa',
+  -- 'adg', 'adf', 'add', 'ads', 'ada',
+  -- 'asg', 'asf', 'asd', 'ass', 'asa',
+  -- 'aag', 'aaf', 'aad', 'aas', 'aaa',
+--   'dga', 'dgs', 'dgd', 'dgf', 'dgg',
+--   'dfa', 'dfs', 'dfd', 'dff', 'dfg',
+--   'dda', 'dds', 'ddd', 'ddf', 'ddg',
+--   'dsa', 'dss', 'dsd', 'dsf', 'dsg',
+--   'daa', 'das', 'dad', 'daf', 'dag',
+--   'sga', 'sgs', 'sgd', 'sgf', 'sgg',
+--   'sfa', 'sfs', 'sfd', 'sff', 'sfg',
+--   'sda', 'sds', 'sdd', 'sdf', 'sdg',
+--   'ssa', 'sss', 'ssd', 'ssf', 'ssg',
+--   'saa', 'sas', 'sad', 'saf', 'sag',
+--   'aga', 'ags', 'agd', 'agf', 'agg',
+--   'afa', 'afs', 'afd', 'aff', 'afg',
+--   'ada', 'ads', 'add', 'adf', 'adg',
+--   'asa', 'ass', 'asd', 'asf', 'asg',
+--   'aaa', 'aas', 'aad', 'aaf', 'aag',
 
 vim.g.startify_custom_header = 'startify#pad(startify#fortune#quote())'
 vim.g.startify_padding_left = 0
@@ -680,6 +708,10 @@ vim.g.startify_lists = {{
 -- Codefolding indent based
 vim.o.foldmethod = 'indent'
 vim.o.foldlevelstart = 99 -- nothing shall be folded when entering a buffer
+
+-- LATEX
+vim.g.syntax='enable'
+vim.g.vimtex_view_method = 'zathura'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
