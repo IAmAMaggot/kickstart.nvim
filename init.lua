@@ -673,7 +673,7 @@ vim.keymap.set('n', '<Leader>wn', '<C-w>=', {noremap = true,
 vim.keymap.set('n', '<Leader>ep', '<cmd>SnipRun<cr>', {noremap = true,
    desc = 'Execute marked Python code' }
 )
-vim.keymap.set('v', '<Leader>sr', function () -- visual mode is complex af
+vim.keymap.set('v', '<Leader>ep', function () -- visual mode is complex af
   return ":SnipRun " .. '<cr>'
 end, { expr = true,
    desc = 'Execute marked Python code' }
