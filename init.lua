@@ -69,8 +69,16 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-  -- RASI: after that :call mkdp#util#install()
-  'iamcco/markdown-preview.nvim',
+  -- -- RASI: after that :call mkdp#util#install()
+  -- {'iamcco/markdown-preview.nvim',
+  --   build = ':call mkdp#util#install()',
+  -- },
+  {
+      "iamcco/markdown-preview.nvim",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      ft = { "markdown" },
+      build = function() vim.fn["mkdp#util#install"]() end,
+  },
 
   -- RASI: LATEX
   'lervag/vimtex',
@@ -316,7 +324,8 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 
 if vim.fn.hostname() == "RasiZephiWindows" then
-  vim.o.clipboard = 'unnamed'
+  -- vim.o.clipboard = 'WslClipboard'
+  vim.o.clipboard = 'unnamedplus'
 end
 
 -- Enable break indent
@@ -644,6 +653,7 @@ vim.g.clipboard = {
   },
   cache_enabled = 0,
 }
+
 -- RASI: allow inserting a new line without entering insert mode
 vim.api.nvim_set_keymap('n', '<Leader>o', 'o<Esc>k', {noremap = true,
    desc = 'New line below without insert mode' }
