@@ -764,7 +764,6 @@ vim.o.foldmethod = 'indent'
 vim.o.foldlevelstart = 99 -- nothing shall be folded when entering a buffer
 
 -- LATEX
-vim.g.syntax='enable'
 vim.g.vimtex_view_method = 'zathura'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
