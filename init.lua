@@ -464,7 +464,10 @@ vim.defer_fn(function()
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
 
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      disable = {"csv"},
+    },
     indent = { enable = true },
     incremental_selection = {
       enable = true,
@@ -733,9 +736,11 @@ end, { expr = true,
 vim.keymap.set('n', '<Leader>f', '<cmd>Format<cr>', {noremap = true,
    desc = 'LSP code formatting' }
 )
-vim.keymap.set('n', '<Leader>st', '<cmd>Startify<cr>', {noremap = true,
-   desc = 'LSP code formatting' }
-)
+-- RASI: this shortcut is already set to <Leader>f
+-- vim.keymap.set('n', '<Leader>st', '<cmd>Startify<cr>', {noremap = true,
+--    desc = 'LSP code formatting' }
+-- )
+--
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 
 -- vim.g.startify_custom_indices = {'a', 's', 'd', 'f', 'g', 'w', 'r', 't', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'aa', 'as', 'ad', 'af', 'ag', 'aw', 'ar', 'at', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a0', 'sa', 'ss', 'sd', 'sf', 'sg', 'sw', 'sr', 'st', 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's0'}
