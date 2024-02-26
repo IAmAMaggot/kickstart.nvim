@@ -41,9 +41,6 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-if vim.fn.hostname() ~= "RasiZephiWindows" then
-  vim.g.python3_host_prog = vim.fn.expand('/usr/bin/python3.8')
-end
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -72,9 +69,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   -- -- RASI: after that :call mkdp#util#install()
-  -- {'iamcco/markdown-preview.nvim',
-  --   build = ':call mkdp#util#install()',
-  -- },
   {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -208,8 +202,8 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
-        -- theme = 'default',
+        -- theme = 'onedark',
+        theme = 'auto',
         component_separators = '',
         section_separators = '',
       },
@@ -295,9 +289,10 @@ require('lazy').setup({
   --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
 --  { import = 'custom.plugins' },
+  --
   'mhinz/vim-startify',
 
-  { -- Theme inspired by Atom
+  {
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup()
@@ -305,6 +300,54 @@ require('lazy').setup({
   },
 
 }, {})
+
+-- RASI
+require("ibl").setup()
+require("ibl").update {
+  enabled = true
+}
+
+-- RASI
+require('onedark').setup  {
+    -- Main options --
+    style = 'dark', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+    transparent = false,  -- Show/hide background
+    term_colors = true, -- Change terminal color as per the selected theme style
+    ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+    cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+    -- toggle theme style ---
+    toggle_style_key = nil, -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+    toggle_style_list = {'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'}, -- List of styles to toggle between
+
+    -- Change code style ---
+    -- Options are italic, bold, underline, none
+    -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+    code_style = {
+        comments = 'italic',
+        keywords = 'none',
+        functions = 'none',
+        strings = 'none',
+        variables = 'none'
+    },
+
+    -- Lualine options --
+    lualine = {
+        transparent = false, -- lualine center bar transparency
+    },
+
+    -- Custom Highlights --
+    colors = {}, -- Override default colors
+    highlights = {}, -- Override highlight groups
+
+    -- Plugins Config --
+    diagnostics = {
+        darker = false, -- darker colors for diagnostic
+        undercurl = true,   -- use undercurl instead of underline for diagnostics
+        background = true,    -- use background color for virtual text
+    },
+}
+require('onedark').load()
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -330,8 +373,9 @@ if vim.fn.hostname() == "RasiZephiWindows" then
   vim.o.clipboard = 'unnamedplus'
 end
 
--- Enable break indent
-vim.o.breakindent = true
+-- RASI: enabling this breaks indentblankline wtf
+-- -- Enable break indent
+-- vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
@@ -685,6 +729,7 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
 -- RASI: this allows to use CTRL-C[-V] in windows and y p in vim
 vim.g.clipboard = {
   name = 'WslClipboard',
